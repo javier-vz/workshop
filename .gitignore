@@ -1,0 +1,14 @@
+# Inputs and outputs are not versioned: the steps in README.md regenerate them.
+# derivados/grafo.npz is about 150 MB, over GitHub's 100 MB limit.
+datos/*
+!datos/.gitkeep
+derivados/*
+!derivados/.gitkeep
+resultados/*
+!resultados/.gitkeep
+
+canete_paths.pkl
+log_*.txt
+
+__pycache__/
+*.pyc

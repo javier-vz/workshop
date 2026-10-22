@@ -1,0 +1,174 @@
+camino 0.20.0 (2026-10-07)
+proyecto: C:\Users\jvera\Documents\netscix_calculos
+=== red: el Qhapaq Nan como RED: da el registro para medir centralidad? ===
+  leyendo SIN recortar: qhapaq_nan.kmz
+
+  --- grupos de 'tramnomb' excluidos por config.yaml ---
+  '(nombre vacio)': 315 rasgos, 525.1 km de linea en una caja de 1985 km de diagonal (razon 3.8)
+  'En Proceso': 169 rasgos, 120.0 km de linea en una caja de 733 km de diagonal (razon 6.1)
+  'En proceso': 124 rasgos, 119.1 km de linea en una caja de 1057 km de diagonal (razon 8.9)
+  Se quitan del registro (datos.tramos_excluidos).
+
+  solo observado :  5221 rasgos,     9591 km   (relevado en campo)
+  + proyectado   :  5938 rasgos,    11288 km   (+717 rasgos, +1697 km inferidos por el registro = 15% del total)
+  (ahora la misma pasada con lo proyectado dentro; tarda otro tanto)
+
+  --- la red segun que huecos se cierren ---
+                  solo observado                  mas lo proyectado       
+      tol comp   kmMay  g100   %km    rho    comp   kmMay  g100   %km    rho
+       0m  917     196    11  0.17      -     572     306    24  0.32      -
+      50m  745     299    13  0.24   0.29     404     445    26  0.42   0.42
+     100m  695     299    13  0.25   0.39     374     445    26  0.43   0.73
+     250m  609     448    14  0.31   0.41     326     484    27  0.49   0.68
+     500m  533     447    16  0.37   0.58     289     735    26  0.55   0.73
+    1000m  441    1057    19  0.47   0.47     243    1587    25  0.61   0.79
+    2000m  331    1471    18  0.52   0.71     200    1861    25  0.67   0.81
+
+  tol     cuanto hueco se cierra: dos extremos a menos de esa
+          distancia pasan a ser el mismo nodo.
+  comp    componentes desconectadas. Con muchas, no hay caminos
+          entre la mayoria de los pares y la centralidad no mide
+          nada.
+  kmMay   KILOMETROS de camino en la componente mayor. Es la
+          columna vertebral: lo mas largo que se puede recorrer
+          sin salirse de lo que el registro conecta.
+  g100    componentes de 100 km o mas. Cada una es un
+          corredor regional, medible por dentro.
+  %km     fraccion de TODOS los km que cae en esas componentes
+          grandes. Mide cuanto del sistema es red y cuanto es
+          esquirla suelta.
+  rho     correlacion de Spearman del ORDEN de los tramos por
+          centralidad, contra la tolerancia anterior. ES LO QUE
+          DECIDE: si se mantiene alto, el orden no depende de
+          donde se puso el umbral y se puede reportar. Si baja,
+          la centralidad que se midiera seria la del umbral.
+
+  solo observado, sin cerrar ningun hueco (tol 0 m):
+    las 5 componentes mayores: 196, 183, 178, 172, 147 km
+    mediana de componente: 3.0 km   |   componentes de >=100 km: 11 (17% de los km)
+
+  mas lo proyectado, sin cerrar ningun hueco (tol 0 m):
+    las 5 componentes mayores: 306, 264, 196, 178, 172 km
+    mediana de componente: 5.7 km   |   componentes de >=100 km: 24 (32% de los km)
+
+  --- centralidad DENTRO de los corredores (solo observado) ---
+     tol  corr  rasgos  comunes    rho
+      0m    11     713        0      -
+     50m    13    1208      712   0.86
+    100m    13    1216     1207   0.92
+    250m    14    1519     1213   0.79
+    500m    16    1803     1502   0.72
+   1000m    19    2435     1766   0.70
+   2000m    18    2470     2369   0.80
+
+  corr     corredores de >=100 km, donde se midio.
+  rasgos   rasgos del registro que cayeron en alguno y por tanto
+           TIENEN centralidad. Los demas no valen cero: no hay
+           red donde medirlos.
+  comunes  rasgos con valor en esta tolerancia Y en la anterior.
+           Es el n de la correlacion. Si es chico, el rho no
+           dice nada por alto que salga.
+  rho      Spearman del orden, solo sobre esos comunes. ESTE es
+           el contraste honesto: el de la primera tabla esta
+           dominado por los miles de rasgos aislados.
+
+  --- centralidad DENTRO de los corredores (mas lo proyectado) ---
+     tol  corr  rasgos  comunes    rho
+      0m    24    1654        0      -
+     50m    26    2655     1651   0.83
+    100m    26    2678     2653   0.95
+    250m    27    3004     2649   0.89
+    500m    26    3368     2962   0.72
+   1000m    25    3572     3159   0.81
+   2000m    25    3697     3475   0.83
+
+  corr     corredores de >=100 km, donde se midio.
+  rasgos   rasgos del registro que cayeron en alguno y por tanto
+           TIENEN centralidad. Los demas no valen cero: no hay
+           red donde medirlos.
+  comunes  rasgos con valor en esta tolerancia Y en la anterior.
+           Es el n de la correlacion. Si es chico, el rho no
+           dice nada por alto que salga.
+  rho      Spearman del orden, solo sobre esos comunes. ESTE es
+           el contraste honesto: el de la primera tabla esta
+           dominado por los miles de rasgos aislados.
+
+  --- cada corredor de >=100 km, uno por uno (tol 0 m) ---
+       km  nodos  aristas  ciclos   alfa
+    306.2     35       43       9  0.138
+    264.0     14       14       1  0.043
+    195.8      2        1       0  0.000
+    178.1     16       20       5  0.185
+    172.2      9        8       0  0.000
+    171.6      8        9       2  0.182
+    168.1     73      109      37  0.262
+    156.0      6        6       1  0.143
+    155.3      2        1       0  0.000
+    147.0      4        3       0  0.000
+    146.8      8        8       1  0.091
+    145.9     13       14       2  0.095
+    133.5     23       40      18  0.439
+    132.3      9        8       0  0.000
+    130.8      4        3       0  0.000
+    125.4      3        2       0  0.000
+    121.7     10       10       1  0.067
+    118.2      4        3       0  0.000
+    116.5      2        1       0  0.000
+    112.0      2        1       0  0.000
+    108.6      4        3       0  0.000
+    105.7      7        6       0  0.000
+    105.0      7        6       0  0.000
+    100.8      4        3       0  0.000
+
+  ciclos  caminos alternativos independientes. CERO quiere
+          decir que entre cada par de puntos hay una sola ruta.
+  alfa    ciclos observados sobre los posibles (Garrison y
+          Marble). 0 = arbol, 1 = malla. No depende de ninguna
+          tolerancia: sale del conteo de nodos y aristas.
+
+  14 de los 24 corredores son ARBOLES (ningun ciclo):
+  1826 de 3618 km, el 50% de los kilometros en corredor. Ahi la
+  betweenness no mide eleccion de ruta, mide posicion en la linea.
+
+  --- los tramos mas de paso DEL CORREDOR MAYOR (306 km, tol 0 m) ---
+   bc max  bc med      km  rasgos  tramo
+    0.514   0.057    39.3      76  Pumpu - Sucoarocoay o Pueblo Viejo
+    0.420   0.087    66.1      12  Pumpu - Pallasca
+    0.306   0.306    52.2      12  Ticapampa - Paucas
+    0.057   0.057   115.9      24  Huanucopampa - Casma
+    0.057   0.057    27.3       2  Casma - Huanucopampa
+    0.057   0.057     5.8       1  Huanrraga - C° Yeso
+
+  bc  betweenness de arista normalizada dentro del corredor:
+      fraccion de los caminos mas cortos entre pares de nodos del
+      corredor que pasan por ahi. Alto = cuello de botella. Se da
+      el maximo y la mediana de los rasgos del tramo, porque un
+      tramo largo puede ser de paso en un pedazo y no en otro.
+
+  VEREDICTO (solo observado): NO hay una red global, pero si 11 corredores de >=100 km (el mayor,
+  196 km) con 17% de los kilometros sin cerrar ningun hueco.
+  (cerrando huecos de hasta 2000 m llega a 52% de los km.) El orden por
+  centralidad aguanta mover el umbral, asi que es reportable DENTRO de cada
+  corredor, y tiene sentido cruzarlo con la razon de costo de cada tramo.
+
+  VEREDICTO (mas lo proyectado): NO hay una red global, pero si 24 corredores de >=100 km (el mayor,
+  306 km) con 32% de los kilometros sin cerrar ningun hueco.
+  (cerrando huecos de hasta 2000 m llega a 67% de los km.) El orden por
+  centralidad aguanta mover el umbral, asi que es reportable DENTRO de cada
+  corredor, y tiene sentido cruzarlo con la razon de costo de cada tramo.
+  PERO 14 de los 24 corredores no tienen ningun ciclo (50% de los km
+  en corredor): ahi la betweenness no mide eleccion de ruta porque no hay
+  ninguna que elegir. La centralidad solo dice algo en los corredores con
+  ciclos, y el indice alfa es la medida que los distingue.
+
+  --- que compra lo proyectado (a tolerancia 0, sin cerrar nada) ---
+  componente mayor:                196 km ->     306 km
+  componentes de >=100 km:            11    ->      24
+  % de km en esas componentes:     17%    ->     32%
+  precio:                      +1697 km inferidos, 15% del total
+
+  LECTURA: Lo proyectado SI aporta topologia, y se puede decir cuanta: la columna
+  vertebral pasa de 196 a 306 km (1.6x) y las componentes grandes
+  de 17% a 32% de los km, pagando 15% de km inferidos. Es decir que esa
+  parte de la conectividad no esta observada: la infiere el registro, y quien
+  reporte centralidad esta reportando, en esa proporcion, la interpolacion.
