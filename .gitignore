@@ -1,14 +1,16 @@
-# Inputs and outputs are not versioned: the steps in README.md regenerate them.
-# derivados/grafo.npz is about 150 MB, over GitHub's 100 MB limit.
-datos/*
-!datos/.gitkeep
-derivados/*
-!derivados/.gitkeep
-resultados/*
-!resultados/.gitkeep
-
-canete_paths.pkl
-log_*.txt
-
+# Heritage-sensitive data: NEVER COMMIT
+*PRIVATE*.csv
+*PRIVATE*.zip
+**/private/
+**/02_PRIVADO_NO_SUBIR/
+*canete_250m*.csv
+*oof_scores*.csv
+# Keep generated results out of the public history
+results/*
+!results/README.md
+.ipynb_checkpoints/
 __pycache__/
 *.pyc
+.venv/
+.env
+.DS_Store

@@ -1,0 +1,4 @@
+-r requirements.txt
+nbformat>=5.9
+nbclient>=0.10
+pytest>=8.0

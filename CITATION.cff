@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Please cite the workshop teaching materials; the private Cañete dataset is not distributed."
+title: "From Incomplete Spatial Data to Networks: A Hands-on Tutorial in Predictive Modeling and Routing"
+type: software
+authors:
+  - family-names: "Vera Zúñiga"
+    given-names: "Javier M."
+  - family-names: "Cornejo Meza"
+    given-names: "Dina S."
+version: 1.0.0
